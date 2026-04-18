@@ -17,23 +17,31 @@ The motivation behind this work is to explore trade-offs between accuracy and co
 > Segmentation: HSV color thresholding applied to provide segmented images
 
 Classes:
-Benign (hematogones)
-Early Pre-B ALL
-Pre-B ALL
-Pro-B ALL
+> Benign (hematogones)
+
+> Early Pre-B ALL
+
+> Pre-B ALL
+
+> Pro-B ALL
 
 Initial Distribution:
 
-Benign: 504
-Early: 985
-Pre: 963
-Pro: 804
+> Benign: 504
+
+> Early: 985
+
+> Pre: 963
+
+> Pro: 804
 Balanced Dataset (after augmentation): 1,500 images per class
 
 ⚙️ Preprocessing Pipeline
-Resizing: All images resized to (128 × 128) pixels
-Normalization: Pixel values scaled to [0, 1]
-Augmentation:
+> Resizing: All images resized to (128 × 128) pixels
+
+> Normalization: Pixel values scaled to [0, 1]
+
+> Augmentation:
   Rotation (up to 90°)
   Horizontal & vertical flips
   Width & height shifts
@@ -43,42 +51,52 @@ Augmentation:
   Ensures balanced dataset and prevents overfitting
 
 🏗️ Baseline CNN
-Architecture: 5 convolutional blocks (Conv2D → BatchNorm → MaxPooling → Dropout)
-Filters: 16 → 32 → 64 → 128 → 256
-Dense Layers: Two fully connected layers with ReLU activation, followed by Softmax for 4-class classification
-Optimizer: Adam (lr = 1e-4)
-Loss Function: Categorical Crossentropy
-Callbacks: EarlyStopping, ReduceLROnPlateau, ModelCheckpoint, TensorBoard
-Performance (Validation): Accuracy ~79%
+> Architecture: 5 convolutional blocks (Conv2D → BatchNorm → MaxPooling → Dropout)
+
+> Filters: 16 → 32 → 64 → 128 → 256
+
+> Dense Layers: Two fully connected layers with ReLU activation, followed by Softmax for 4-class classification
+
+> Optimizer: Adam (lr = 1e-4)
+
+> Loss Function: Categorical Crossentropy
+
+> Callbacks: EarlyStopping, ReduceLROnPlateau, ModelCheckpoint, TensorBoard
+
+> Performance (Validation): Accuracy ~79%
 
 Strong performance on “Pre” class
 Weak recall on “Benign” due to class imbalance
 
 🔬 MobileNetV3 (Transfer Learning)
-Base Model: MobileNetV3Large (pre-trained on ImageNet, include_top=False)
-Custom Head:
+> Base Model: MobileNetV3Large (pre-trained on ImageNet, include_top=False)
+
+> Custom Head:
 GlobalAveragePooling2D
 Dense(128, ReLU)
 Dense(4, Softmax)
-Evaluation: 5-fold stratified cross-validation for robust performance estimation
-Training: 30 epochs, Adam optimizer (lr = 1e-4)
+
+> Evaluation: 5-fold stratified cross-validation for robust performance estimation
+
+> Training: 30 epochs, Adam optimizer (lr = 1e-4)
 
 Optional Fine-Tuning: Unfreeze base layers, retrain with lr = 1e-5
 
 Advantages:
-Lightweight and efficient
-Suitable for mobile deployment
-Strong generalization with transfer learning
+Lightweight and efficient, Suitable for mobile deployment, Strong generalization with transfer learning
 
 🔬 GhostNet (Transfer Learning)
-Base Model: GhostNet (pre-trained on ImageNet, include_top=False)
-Custom Head: Same as MobileNetV3 (GlobalAveragePooling2D → Dense → Softmax)
-Evaluation: 5-fold stratified cross-validation
-Training: 30 epochs, Adam optimizer (lr = 1e-4)
+> Base Model: GhostNet (pre-trained on ImageNet, include_top=False)
+
+> Custom Head: Same as MobileNetV3 (GlobalAveragePooling2D → Dense → Softmax)
+
+> Evaluation: 5-fold stratified cross-validation
+
+> Training: 30 epochs, Adam optimizer (lr = 1e-4)
 
 Optional Fine-Tuning: Unfreeze base layers, retrain with lr = 1e-5
 
-Advantages:
+> Advantages:
 Designed for extreme efficiency (ghost modules reduce redundancy in feature maps)
 Comparable accuracy to MobileNetV3
 
