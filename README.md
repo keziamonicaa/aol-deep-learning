@@ -9,8 +9,11 @@ The motivation behind this work is to explore trade-offs between accuracy and co
 
 📊 Dataset Description
 > Source: Taleqani Hospital, Tehran (Iran) – Bone marrow laboratory
+
 > Size: 3,256 Peripheral Blood Smear (PBS) images from 89 suspected ALL patients
+
 > Preparation: Blood samples stained by skilled laboratory staff, imaged using Zeiss camera at 100x magnification, saved in JPG format
+
 > Segmentation: HSV color thresholding applied to provide segmented images
 
 Classes:
