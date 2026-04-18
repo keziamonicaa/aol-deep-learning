@@ -8,10 +8,10 @@ This repository presents a comparative study of MobileNetV3 and GhostNet, two li
 The motivation behind this work is to explore trade-offs between accuracy and computational efficiency. While complex models (ResNet, Vision Transformers, Hybrid CNNs) achieve very high accuracy (>97%), they are computationally expensive and difficult to deploy in rural or resource-limited healthcare settings. Lightweight models such as MobileNetV3 and GhostNet offer a balance between performance and efficiency, making them suitable for mobile and edge deployment.
 
 📊 Dataset Description
-Source: Taleqani Hospital, Tehran (Iran) – Bone marrow laboratory
-Size: 3,256 Peripheral Blood Smear (PBS) images from 89 suspected ALL patients
-Preparation: Blood samples stained by skilled laboratory staff, imaged using Zeiss camera at 100x magnification, saved in JPG format
-Segmentation: HSV color thresholding applied to provide segmented images
+> Source: Taleqani Hospital, Tehran (Iran) – Bone marrow laboratory
+> Size: 3,256 Peripheral Blood Smear (PBS) images from 89 suspected ALL patients
+> Preparation: Blood samples stained by skilled laboratory staff, imaged using Zeiss camera at 100x magnification, saved in JPG format
+> Segmentation: HSV color thresholding applied to provide segmented images
 
 Classes:
 Benign (hematogones)
